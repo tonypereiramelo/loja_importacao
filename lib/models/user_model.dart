@@ -89,12 +89,11 @@ class UserModel extends Model {
     if (user == null) user = _auth.currentUser;
     if (user != null) {
       if (userData["name"] == null) {
-        DocumentSnapshot docUser = await FirebaseFirestore
-            .instance
+        DocumentSnapshot docUser = await FirebaseFirestore.instance
             .collection("users")
             .doc(user!.uid)
             .get();
-        userData = docUser.data();
+        userData = docUser.data() as Map<String, dynamic>;
       }
     }
     notifyListeners();
