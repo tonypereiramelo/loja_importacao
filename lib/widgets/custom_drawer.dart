@@ -5,9 +5,16 @@ import 'package:loja_importacao/screens/login_screen.dart';
 import 'package:loja_importacao/tiles/drawer_tile.dart';
 import 'package:scoped_model/scoped_model.dart';
 
-class CustomDrawer extends StatelessWidget {
+class CustomDrawer extends StatefulWidget {
   final PageController pageController;
   CustomDrawer(this.pageController);
+  @override
+  _CustomDrawerState createState() => _CustomDrawerState(pageController);
+}
+
+class _CustomDrawerState extends State<CustomDrawer> {
+  final PageController pageController;
+  _CustomDrawerState(this.pageController);
   @override
   Widget build(BuildContext context) {
     return Drawer(
