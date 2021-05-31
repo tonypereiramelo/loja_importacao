@@ -124,6 +124,7 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   void _onFail() {
+    // ignore: deprecated_member_use
     _scaffoldKey.currentState!.showSnackBar(SnackBar(
       content: Text("Falha ao logar"),
       backgroundColor: Colors.red,
