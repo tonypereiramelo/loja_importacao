@@ -13,9 +13,11 @@ class _LoginScreenState extends State<LoginScreen> {
   final _passController = TextEditingController();
 
   final _formKey = GlobalKey<FormState>();
+  final _scaffoldKey = GlobalKey<ScaffoldState>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        key: _scaffoldKey,
         appBar: AppBar(
           title: Text(
             "Entrar",
@@ -122,12 +124,10 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   void _onFail() {
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text("Falha ao Entrar!"),
-        backgroundColor: Colors.redAccent,
-        duration: Duration(seconds: 2),
-      ),
-    );
+    _scaffoldKey.currentState!.showSnackBar(SnackBar(
+      content: Text("Falha ao logar"),
+      backgroundColor: Colors.red,
+      duration: Duration(seconds: 2),
+    ));
   }
 }

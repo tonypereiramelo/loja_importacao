@@ -17,4 +17,11 @@ class ProductData {
     color = snapshot.data()!["color"];
     images = snapshot.data()!["images"];
   }
+  Map<String, dynamic> toResumedMap() {
+    return {
+      "title": title,
+      "description": description,
+      "price": price,
+    };
+  }
 }
