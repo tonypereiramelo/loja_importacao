@@ -2,6 +2,8 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:loja_importacao/datas/product_data.dart';
+import 'package:loja_importacao/models/user_model.dart';
+import 'package:loja_importacao/screens/login_screen.dart';
 
 class ProductScreen extends StatefulWidget {
   final ProductData product;
@@ -97,12 +99,22 @@ class _ProductScreenState extends State<ProductScreen> {
                 SizedBox(
                   height: 44,
                   child: ElevatedButton(
-                      child: Text("Adicionar ao Carrinho"),
+                      child: Text(UserModel.of(context).isLoggedIn()
+                          ? "Adicionar ao Carrinho"
+                          : "Entre para Comprar!"),
                       style: ElevatedButton.styleFrom(
                           primary: primaryColor,
                           onPrimary: Colors.white,
                           textStyle: TextStyle(fontSize: 18)),
-                      onPressed: size != null ? () {} : null),
+                      onPressed: size != null
+                          ? () {
+                              if (UserModel.of(context).isLoggedIn()) {
+                              } else {
+                                Navigator.of(context).push(MaterialPageRoute(
+                                    builder: (context) => LoginScreen()));
+                              }
+                            }
+                          : null),
                 ),
                 SizedBox(
                   height: 16,
