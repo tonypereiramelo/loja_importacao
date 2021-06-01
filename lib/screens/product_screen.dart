@@ -1,7 +1,9 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:loja_importacao/datas/cart_product.dart';
 import 'package:loja_importacao/datas/product_data.dart';
+import 'package:loja_importacao/models/cart_model.dart';
 import 'package:loja_importacao/models/user_model.dart';
 import 'package:loja_importacao/screens/login_screen.dart';
 
@@ -14,8 +16,8 @@ class ProductScreen extends StatefulWidget {
 
 class _ProductScreenState extends State<ProductScreen> {
   final ProductData product;
-  String? size;
-  _ProductScreenState(this.product, {this.size});
+  String? color;
+  _ProductScreenState(this.product, {this.color});
 
   @override
   Widget build(BuildContext context) {
@@ -75,7 +77,7 @@ class _ProductScreenState extends State<ProductScreen> {
                     children: product.color!.map((c) {
                       return GestureDetector(
                         onTap: () {
-                          size = c;
+                          color = c;
                           setState(() {});
                         },
                         child: Container(
@@ -83,7 +85,8 @@ class _ProductScreenState extends State<ProductScreen> {
                               borderRadius:
                                   BorderRadius.all(Radius.circular(4)),
                               border: Border.all(
-                                  color: c == size ? primaryColor : Colors.grey,
+                                  color:
+                                      c == color ? primaryColor : Colors.grey,
                                   width: 3)),
                           width: 50,
                           alignment: Alignment.center,
@@ -106,9 +109,16 @@ class _ProductScreenState extends State<ProductScreen> {
                           primary: primaryColor,
                           onPrimary: Colors.white,
                           textStyle: TextStyle(fontSize: 18)),
-                      onPressed: size != null
+                      onPressed: color != null
                           ? () {
                               if (UserModel.of(context).isLoggedIn()) {
+                                CartProduct cartProduct = CartProduct();
+                                cartProduct.color = color;
+                                cartProduct.quantity = 1;
+                                cartProduct.pid = product.id;
+                                cartProduct.category = product.category;
+
+                                CartModel.of(context).addCartItem(cartProduct);
                               } else {
                                 Navigator.of(context).push(MaterialPageRoute(
                                     builder: (context) => LoginScreen()));

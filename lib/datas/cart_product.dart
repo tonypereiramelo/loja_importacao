@@ -12,6 +12,8 @@ class CartProduct {
 
   ProductData? productData;
 
+  CartProduct();
+
   CartProduct.fromDocument(DocumentSnapshot<Map<String, dynamic>> document) {
     cid = document.id;
     category = document.data()!["category"];
@@ -25,7 +27,7 @@ class CartProduct {
       "pid": pid,
       "quantity": quantity,
       "color": color,
-      "product": productData!.toResumedMap()
+      //"product": productData!.toResumedMap()
     };
   }
 }
