@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:loja_importacao/helpers/class_helpers.dart';
 import 'package:loja_importacao/models/user_model.dart';
 import 'package:scoped_model/scoped_model.dart';
 
@@ -92,7 +93,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           userData: userData,
                           pass: _passController.text,
                           onSucess: _onSucess,
-                          onFail: _onFail,
+                          onFail: FailLogin(),
                         );
                       }
                     },
@@ -121,15 +122,5 @@ class _SignUpScreenState extends State<SignUpScreen> {
     Future.delayed(Duration(seconds: 2)).then((_) {
       Navigator.of(context).pop();
     });
-  }
-
-  void _onFail() {
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text("Falha ao Cadastrar Usuário!"),
-        backgroundColor: Colors.redAccent,
-        duration: Duration(seconds: 2),
-      ),
-    );
   }
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:loja_importacao/helpers/class_helpers.dart';
 import 'package:loja_importacao/models/user_model.dart';
 import 'package:loja_importacao/screens/signup_screen.dart';
 import 'package:scoped_model/scoped_model.dart';
@@ -104,7 +105,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           email: _emailController.text,
                           pass: _passController.text,
                           onSucess: _onSucess,
-                          onFail: _onFail);
+                          onFail: FailLogin());
                     },
                     child: Text("Entrar"),
                     style: ElevatedButton.styleFrom(
@@ -122,14 +123,4 @@ class _LoginScreenState extends State<LoginScreen> {
   void _onSucess() {
     Navigator.of(context).pop();
   }
-
-  void _onFail() {
-    // ignore: deprecated_member_use
-    _scaffoldKey.currentState!.showSnackBar(SnackBar(
-      content: Text("Falha ao logar"),
-      backgroundColor: Colors.red,
-      duration: Duration(seconds: 2),
-    ));
-  }
-  
 }

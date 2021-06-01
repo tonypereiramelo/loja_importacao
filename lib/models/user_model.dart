@@ -1,6 +1,9 @@
+import 'dart:js';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:loja_importacao/helpers/class_helpers.dart';
 import 'package:scoped_model/scoped_model.dart';
 
 class UserModel extends Model {
@@ -23,7 +26,7 @@ class UserModel extends Model {
       {required Map<String, dynamic> userData,
       required String pass,
       required VoidCallback onSucess,
-      required VoidCallback onFail}) {
+      required FailLogin onFail}) {
     isLoading = true;
     notifyListeners();
     _auth
@@ -36,7 +39,7 @@ class UserModel extends Model {
       isLoading = false;
       notifyListeners();
     }).catchError((e) {
-      onFail();
+      FailLogin();
       isLoading = false;
       notifyListeners();
     });
@@ -46,7 +49,7 @@ class UserModel extends Model {
       {required String email,
       required String pass,
       required VoidCallback onSucess,
-      required VoidCallback onFail}) async {
+      required FailLogin onFail}) async {
     isLoading = true;
     notifyListeners();
     _auth
@@ -55,7 +58,7 @@ class UserModel extends Model {
       user = user;
       await _loadCurrentUser();
     }).catchError((e) {
-      onFail();
+      FailLogin();
       isLoading = false;
       notifyListeners();
     });
