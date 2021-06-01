@@ -131,4 +131,5 @@ class _LoginScreenState extends State<LoginScreen> {
       duration: Duration(seconds: 2),
     ));
   }
+  
 }
