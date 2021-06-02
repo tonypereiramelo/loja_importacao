@@ -13,10 +13,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
   final _emailController = TextEditingController();
   final _passController = TextEditingController();
   final _addressController = TextEditingController();
-
+  final FailLogin _snackError = FailLogin();
   final _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
+    _snackError.text = "Erro ao criar conta";
     return Scaffold(
         appBar: AppBar(
           title: Text(
@@ -93,7 +94,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           userData: userData,
                           pass: _passController.text,
                           onSucess: _onSucess,
-                          onFail: FailLogin(),
+                          onFail: _snackError,
                         );
                       }
                     },

@@ -28,11 +28,13 @@ class BodyDrawerBack extends StatelessWidget {
   }
 }
 
-class FailLogin extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return ScaffoldMessenger(child: SnackBar(
-      content: Text("Falha ao logar"),
+class FailLogin {
+  String? text;
+  FailLogin({this.text});
+  VoidCallback? showSk() {
+    ScaffoldMessenger(
+        child: SnackBar(
+      content: Text(text!),
       backgroundColor: Colors.red,
       duration: Duration(seconds: 2),
     ));

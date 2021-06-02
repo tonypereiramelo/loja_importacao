@@ -12,11 +12,12 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   final _emailController = TextEditingController();
   final _passController = TextEditingController();
-
+  final FailLogin _snackError2 = FailLogin();
   final _formKey = GlobalKey<FormState>();
   final _scaffoldKey = GlobalKey<ScaffoldState>();
   @override
   Widget build(BuildContext context) {
+    _snackError2.text = "Erro no Login ou Senha!";
     return Scaffold(
         key: _scaffoldKey,
         appBar: AppBar(
@@ -105,7 +106,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           email: _emailController.text,
                           pass: _passController.text,
                           onSucess: _onSucess,
-                          onFail: FailLogin());
+                          onFail: _snackError2);
                     },
                     child: Text("Entrar"),
                     style: ElevatedButton.styleFrom(
