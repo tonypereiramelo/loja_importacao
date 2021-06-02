@@ -17,8 +17,9 @@ class CartScreen extends StatelessWidget {
             child: ScopedModelDescendant<CartModel>(
               builder: (context, child, model) {
                 int p = model.products.length;
+                int _quantity = 1;
                 return Text(
-                  "${p ?? 0} ${p == 1 ? "ITEM" : "ITENS"}",
+                  "${p < _quantity ? "$p ITEM" : "$p ITENS"}",
                   style: TextStyle(fontSize: 16),
                 );
               },
@@ -70,7 +71,7 @@ class CartScreen extends StatelessWidget {
                 ],
               ),
             );
-          } else if (model.products == null || model.products.length == 0) {
+          } else if (model.products.length == 0) {
             return Center(
               child: Text(
                 "Nenhum produto adicionado!",
