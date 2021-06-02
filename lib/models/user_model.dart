@@ -24,7 +24,7 @@ class UserModel extends Model {
       {required Map<String, dynamic> userData,
       required String pass,
       required VoidCallback onSucess,
-      required FailLogin onFail}) {
+      required onFail}) {
     isLoading = true;
     notifyListeners();
     _auth
@@ -47,7 +47,7 @@ class UserModel extends Model {
       {required String email,
       required String pass,
       required VoidCallback onSucess,
-      required FailLogin onFail}) async {
+      required onFail}) async {
     isLoading = true;
     notifyListeners();
     _auth

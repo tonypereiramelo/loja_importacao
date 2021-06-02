@@ -106,7 +106,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           email: _emailController.text,
                           pass: _passController.text,
                           onSucess: _onSucess,
-                          onFail: _snackError2);
+                          onFail: _snackError2.showSk());
                     },
                     child: Text("Entrar"),
                     style: ElevatedButton.styleFrom(

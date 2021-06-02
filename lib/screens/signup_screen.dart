@@ -94,7 +94,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           userData: userData,
                           pass: _passController.text,
                           onSucess: _onSucess,
-                          onFail: _snackError,
+                          onFail: _snackError.showSk(),
                         );
                       }
                     },
