@@ -17,9 +17,14 @@ class CartScreen extends StatelessWidget {
             child: ScopedModelDescendant<CartModel>(
               builder: (context, child, model) {
                 int p = model.products.length;
-                int _quantity = 1;
+                String _quantity = "";
+                if (p == 1) {
+                  _quantity = " ITEM";
+                } else if (p > 1) {
+                  _quantity = "ITENS";
+                }
                 return Text(
-                  "${p < _quantity ? "$p ITEM" : "$p ITENS"}",
+                  "$p $_quantity",
                   style: TextStyle(fontSize: 16),
                 );
               },
