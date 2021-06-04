@@ -3,6 +3,7 @@ import 'package:loja_importacao/models/cart_model.dart';
 import 'package:loja_importacao/models/user_model.dart';
 import 'package:loja_importacao/screens/login_screen.dart';
 import 'package:loja_importacao/tiles/cart_tile.dart';
+import 'package:loja_importacao/widgets/discount_card.dart';
 import 'package:scoped_model/scoped_model.dart';
 
 class CartScreen extends StatelessWidget {
@@ -87,9 +88,14 @@ class CartScreen extends StatelessWidget {
             );
           } else {
             return ListView(
-              children: model.products.map((product) {
-                return CartTile(product);
-              }).toList(),
+              children: <Widget>[
+                Column(
+                  children: model.products.map((product) {
+                    return CartTile(product);
+                  }).toList(),
+                ),
+                DiscountCard()
+              ],
             );
           }
         },

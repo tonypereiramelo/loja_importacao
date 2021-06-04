@@ -8,6 +8,9 @@ class CartModel extends Model {
   UserModel user;
   List<CartProduct> products = [];
 
+  String? couponCode;
+  int discountPercentage = 0;
+
   bool isLoading = false;
 
   CartModel(this.user) {
