@@ -5,13 +5,14 @@ import 'package:loja_importacao/models/user_model.dart';
 import 'package:scoped_model/scoped_model.dart';
 
 class CartModel extends Model {
-  int? quant;
   UserModel user;
   List<CartProduct> products = [];
 
   bool isLoading = false;
 
-  CartModel(this.user);
+  CartModel(this.user) {
+    if (user.isLoggedIn()) _loadCartItems();
+  }
 
   static CartModel of(BuildContext context) =>
       ScopedModel.of<CartModel>(context);
@@ -42,8 +43,7 @@ class CartModel extends Model {
   }
 
   void decProduct(CartProduct cartProduct) {
-    quant = cartProduct.quantity!;
-    quant = quant! - 1;
+    cartProduct.quantity = cartProduct.quantity! - 1;
 
     FirebaseFirestore.instance
         .collection("users")
@@ -55,8 +55,8 @@ class CartModel extends Model {
     notifyListeners();
   }
 
-  void incProduct(CartProduct cartProduct){
-    quant = quant! + 1;
+  void incProduct(CartProduct cartProduct) {
+    cartProduct.quantity = cartProduct.quantity! + 1;
 
     FirebaseFirestore.instance
         .collection("users")
@@ -64,6 +64,18 @@ class CartModel extends Model {
         .collection("cart")
         .doc(cartProduct.cid)
         .update(cartProduct.toMap());
+
+    notifyListeners();
+  }
+
+  void _loadCartItems() async {
+    QuerySnapshot<Map<String, dynamic>> query = await FirebaseFirestore.instance
+        .collection("users")
+        .doc(user.user!.uid)
+        .collection("cart")
+        .get();
+
+    products = query.docs.map((doc) => CartProduct.fromDocument(doc)).toList();
 
     notifyListeners();
   }
