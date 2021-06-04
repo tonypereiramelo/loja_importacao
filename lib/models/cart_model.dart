@@ -82,4 +82,9 @@ class CartModel extends Model {
 
     notifyListeners();
   }
+
+  void setCoupon(String? couponCode, int discountPercentage) {
+    this.couponCode = couponCode;
+    this.discountPercentage = discountPercentage;
+  }
 }

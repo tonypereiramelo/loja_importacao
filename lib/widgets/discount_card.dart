@@ -32,6 +32,8 @@ class DiscountCard extends StatelessWidget {
                     .get()
                     .then((docSnap) {
                   if (docSnap.data() != null) {
+                    CartModel.of(context)
+                        .setCoupon(text, docSnap.data()!["percent"]);
                     ScaffoldMessenger.of(context).showSnackBar(
                       SnackBar(
                         content: Text(
@@ -40,6 +42,7 @@ class DiscountCard extends StatelessWidget {
                       ),
                     );
                   } else {
+                    CartModel.of(context).setCoupon(null, 0);
                     ScaffoldMessenger.of(context).showSnackBar(
                       SnackBar(
                           content: Text("Cupom não existente"),
