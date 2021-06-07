@@ -1,6 +1,7 @@
 import 'dart:collection';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:loja_importacao/widgets/status_widget.dart';
 
 class OrderTile extends StatelessWidget {
   final String? orderId;
@@ -23,6 +24,7 @@ class OrderTile extends StatelessWidget {
                 child: CircularProgressIndicator(),
               );
             else {
+              int? status = snapshot.data!["status"];
               return Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
@@ -34,6 +36,27 @@ class OrderTile extends StatelessWidget {
                     height: 4,
                   ),
                   Text(_buildProductText(snapshot.data!).toString()),
+                  SizedBox(
+                    height: 4,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: <Widget>[
+                      StatusWidget("1", "Preparação", status, 1),
+                      Container(
+                        height: 1,
+                        width: 40,
+                        color: Colors.grey[500],
+                      ),
+                      StatusWidget("2", "Transporte", status, 2),
+                      Container(
+                        height: 1,
+                        width: 40,
+                        color: Colors.grey[500],
+                      ),
+                      StatusWidget("3", "Entrega", status, 3),
+                    ],
+                  ),
                 ],
               );
             }
