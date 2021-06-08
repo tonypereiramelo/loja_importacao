@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:loja_importacao/tiles/category_tile.dart';
+import 'package:loja_importacao/widgets/loading_cor.dart';
 
 class ProductsTab extends StatelessWidget {
   @override
@@ -10,7 +11,7 @@ class ProductsTab extends StatelessWidget {
       builder: (context, snapshot) {
         if (!snapshot.hasData)
           return Center(
-            child: CircularProgressIndicator(),
+            child: CorLoading(),
           );
         else {
           var dividedTiles = ListTile.divideTiles(
