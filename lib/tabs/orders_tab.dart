@@ -27,6 +27,8 @@ class OdersTab extends StatelessWidget {
               return ListView(
                 children: snapshot.data!.docs
                     .map((doc) => OrderTile(doc.id))
+                    .toList()
+                    .reversed
                     .toList(),
               );
             }
