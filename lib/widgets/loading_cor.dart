@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:rive/rive.dart';
 
-class CorLoading extends StatelessWidget {
-  const CorLoading({Key? key}) : super(key: key);
+class CorLoadding extends StatelessWidget {
+  const CorLoadding({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

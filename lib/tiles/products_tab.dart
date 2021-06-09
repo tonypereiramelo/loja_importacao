@@ -11,7 +11,7 @@ class ProductsTab extends StatelessWidget {
       builder: (context, snapshot) {
         if (!snapshot.hasData)
           return Center(
-            child: CorLoading(),
+            child: CorLoadding(),
           );
         else {
           var dividedTiles = ListTile.divideTiles(
